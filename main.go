@@ -3,6 +3,7 @@ package main
 import (
 	"compress/gzip"
 	"compress/zlib"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
@@ -71,7 +72,8 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 		}
 
 		log.Println("--------------------------------------------------------------------------------")
-		log.Println(record)
+		b, _ := json.Marshal(record)
+		log.Println(string(b))
 	}
 }
 
