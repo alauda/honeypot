@@ -15,6 +15,7 @@ import (
 
 type Record struct {
 	Url    string
+	Method string
 	Header map[string][]string
 	Body   string
 }
@@ -64,6 +65,7 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 		record := Record{
 			Url:    r.URL.String(),
 			Header: r.Header,
+			Method: r.Method,
 		}
 		if body, err := decodeRequestBody(r); err != nil {
 			record.Body = fmt.Sprintf("Parse error: %s", err.Error())
