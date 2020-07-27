@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: honepot
+  labels:
+    app: honeypot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: honeypot
+  template:
+    metadata:
+      labels:
+        app: honeypot
+    spec:
+      containers:
+      - name: honeypot
+        image: honeypot:latest
+        ports:
+        - containerPort: 8080

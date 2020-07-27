@@ -61,6 +61,7 @@ func readAll(r io.Reader) (string, error) {
 func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 	// TODO should be configurable?
 	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"ok":true}`))
 	if status == http.StatusNotFound {
 		record := Record{
 			Url:    r.URL.String(),

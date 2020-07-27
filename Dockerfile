@@ -1,15 +1,16 @@
-FROM golang:1.6
+FROM golang:1.14 as builder
 
-MAINTAINER bin liu
+WORKDIR /workspace
+ADD . /workspace
 
-ENTRYPOINT ["/honeypot/honeypot"]
+ENV CGO_ENABLED=0
+
+RUN go build -o honeypot .
+
+FROM alpine:3.10
+
 EXPOSE 8080
+ENTRYPOINT ["/honeypot"]
+RUN mkdir -p /logs
 
-ADD . /go/src/honeypot
-WORKDIR /go/src
-RUN go build -v -o /honeypot/honeypot honeypot
-RUN chmod +x /honeypot/honeypot
-
-RUN rm -rf /go/src/honeypot && mkdir -p /honeypot/logs
-
-WORKDIR /honeypot
+COPY --from=builder /workspace/honeypot /honeypot
