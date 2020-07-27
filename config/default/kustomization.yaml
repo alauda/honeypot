@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: honeypot
-  newName: harbor-b.alauda.cn/3rdparty/honeypot:latest
+  newName: honeypot:latest
 resources:
 - deploy.yaml
 - service.yaml
