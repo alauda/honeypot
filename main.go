@@ -88,13 +88,13 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	port := flag.String("port", "8080", "sets service port number")
-	log_param := flag.String("log", "", "save all request to a log file")
+	logParam := flag.String("log", "", "save all request to a log file")
 
 	flag.Parse()
 
 	// save logs to file if set.
-	if *log_param != "" {
-		f, err := os.OpenFile(*log_param, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if *logParam != "" {
+		f, err := os.OpenFile(*logParam, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 		if err != nil {
 			panic(fmt.Sprintf("error opening file: %s", err.Error()))
