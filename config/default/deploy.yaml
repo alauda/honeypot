@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: honepot
+  name: honeypot
   labels:
     app: honeypot
 spec:
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: honeypot
-        image: honeypot:latest
+        image: ko://github.com/alauda/honeypot
         ports:
         - containerPort: 8080

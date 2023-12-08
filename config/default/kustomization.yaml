@@ -6,7 +6,6 @@ images:
 resources:
 - deploy.yaml
 - service.yaml
-- ingress.yaml
+# - ingress.yaml
 # Adds namespace to all resources.
 namespace: honeypot
-namePrefix: hp-
